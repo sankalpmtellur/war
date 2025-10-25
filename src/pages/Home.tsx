@@ -27,7 +27,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
             {/* Student Card */}
             <Link
-              href="#"
+              href="/student/login"
               className="group flex flex-col items-center justify-center w-60 h-40 rounded-2xl bg-gradient-to-b from-[#d9e9ff] to-[#bcd8ff] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200"
             >
               <LuGraduationCap className="text-[#003a8c] h-10 w-10 mb-3" />
