@@ -1,12 +1,12 @@
 import type { AppProps } from "next/app";
 import "../app/globals.css";
-import { Geist } from "next/font/google";
+import { Outfit } from "next/font/google";
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-brand-sans" });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={geistSans.className}>
+    <div className={outfit.className}>
       <Component {...pageProps} />
     </div>
   );

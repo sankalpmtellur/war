@@ -2,39 +2,36 @@ import Image from "next/image";
 
 export default function Launchpage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#FFF8F6]">
-      {/* Logo */}
-      <div className="absolute left-4 top-4 sm:left-8 sm:top-8">
+    <main className="relative min-h-screen bg-[#FFF8F6] flex flex-col items-center justify-center">
+      {/* Logo (Top Left) */}
+      <div className="absolute left-6 top-6 sm:left-10 sm:top-10">
         <Image
           src="/logo.webp"
           alt="Rishihood University"
-          width={140}
-          height={40}
+          width={160}
+          height={45}
           priority
-          className="h-auto w-[120px] sm:w-[140px]"
+          className="h-auto w-[140px] sm:w-[160px]"
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center p-4">
-        <section className="w-full max-w-xl">
-          <div className="rounded-2xl bg-white/90 p-8 shadow-[0_20px_60px_rgba(16,24,40,0.08)] ring-1 ring-gray-100 backdrop-blur">
-            <h1 className="text-center text-4xl font-extrabold tracking-tight text-[#990A2C] sm:text-5xl">
-              Welcome!
-            </h1>
-            <p className="mt-3 text-center text-base font-medium text-gray-700">
-              Rishihood University Laundry Service
-            </p>
-            <div className="mt-7 flex items-center justify-center">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center rounded-lg bg-[#990A2C] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#7e0824] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#990A2C]/50"
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        </section>
+      {/* Center Card */}
+      <div className="bg-white shadow-xl rounded-2xl px-10 py-8 sm:px-14 sm:py-10 text-center max-w-md w-[90%] ring-1 ring-gray-100 backdrop-blur">
+        <h1 className="text-[#990A2C] text-4xl sm:text-5xl font-extrabold mb-3">
+          Welcome!
+        </h1>
+        <p className="text-gray-700 text-base sm:text-lg font-medium">
+          Rishihood University Laundry Service
+        </p>
+
+        <div className="mt-7 flex justify-center">
+          <button
+            type="button"
+            className="bg-[#990A2C] hover:bg-[#7e0824] text-white font-semibold text-sm sm:text-base px-8 py-3 rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#990A2C]/50"
+          >
+            Continue
+          </button>
+        </div>
       </div>
     </main>
   );
