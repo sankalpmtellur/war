@@ -3,14 +3,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // 👁️ eye icons
 
 type Props = {};
 
 export default function StudentLogin(_props: Props) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,12 +22,9 @@ export default function StudentLogin(_props: Props) {
       return;
     }
 
-    // Frontend-only placeholder: show loading briefly
     setLoading(true);
     setError("");
-    setTimeout(() => {
-      setLoading(false);
-    }, 800);
+    setTimeout(() => setLoading(false), 1000);
   };
 
   return (
@@ -44,34 +43,62 @@ export default function StudentLogin(_props: Props) {
 
       {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">Login</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
+          Login
+        </h1>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full max-w-sm">
+          {/* Email Input */}
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white 
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
             required
           />
-          <input
-            type="password"
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+
+          {/* Password Input with Toggle */}
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
+                         text-gray-900 placeholder:text-gray-600
+                         focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
+              aria-label="Toggle password visibility"
+            >
+              {showPassword ? (
+                <AiOutlineEyeInvisible size={22} />
+              ) : (
+                <AiOutlineEye size={22} />
+              )}
+            </button>
+          </div>
+
           {/* Error Message */}
           {error && (
-            <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">{error}</div>
+            <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
+              {error}
+            </div>
           )}
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
-            className="mt-4 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
+            className="mt-4 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
+                       text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
           >
             {loading ? (
               <>
@@ -85,8 +112,11 @@ export default function StudentLogin(_props: Props) {
         </form>
 
         <p className="mt-6 text-gray-700 text-base">
-          Don&apos;t have an account?{" "}
-          <Link href="/student/signup1" className="text-[#c45c29] font-medium hover:underline">
+          Don’t have an account?{" "}
+          <Link
+            href="/student/signup1"
+            className="text-[#c45c29] font-medium hover:underline"
+          >
             Sign up
           </Link>
         </p>
@@ -94,4 +124,3 @@ export default function StudentLogin(_props: Props) {
     </div>
   );
 }
-
