@@ -22,10 +22,21 @@ function getServiceStatus() {
   const hour = now.getHours();
   const minute = now.getMinutes();
 
-  const isWeekday = day >= 1 && day <= 6; // Mon–Sat
-  const afterStart = hour > 8 || (hour === 8 && minute >= 30);
-  const beforeEnd = hour < 18;
-  const isOpen = isWeekday && afterStart && beforeEnd;
+  // Monday to Saturday only
+  const isWeekday = day >= 1 && day <= 6;
+
+  // Morning shift: 8:30 AM – 10:00 AM
+  const morningStart = hour > 8 || (hour === 8 && minute >= 30);
+  const beforeMorningEnd = hour < 10;
+
+  // Evening shift: 4:30 PM – 7:00 PM
+  const eveningStart = hour > 16 || (hour === 16 && minute >= 30);
+  const beforeEveningEnd = hour < 19;
+
+  const isOpen =
+    isWeekday &&
+    ((morningStart && beforeMorningEnd) ||
+      (eveningStart && beforeEveningEnd));
 
   return {
     isOpen,
@@ -114,7 +125,7 @@ export default function StudentNavbar() {
             {/* Tooltip */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-4 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
               <p className="font-semibold mb-1">Laundry Hours</p>
-              <p>Mon - Sat: 8:30 AM - 6:00 PM</p>
+              <p>Mon - Sat: 8:30 AM - 10:00 AM & 4:30 PM - 7:00 PM</p>
               <p className="text-gray-300 text-xs mt-1">Closed on Sundays</p>
             </div>
           </div>

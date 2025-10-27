@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import StudentNavbar from "@/app/student/components/StudentNavbar";
+import StudentFooter from "@/app/student/components/StudentFooter";
 
 export default function StudentDashboard() {
   const [showOrders, setShowOrders] = useState(false);
@@ -180,6 +181,8 @@ export default function StudentDashboard() {
           </div>
         </div>
       )}
+      {/* Footer - Mobile Only */}
+      <StudentFooter />
     </div>
   );
 }
