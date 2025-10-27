@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import StudentNavbar from "@/app/student/components/StudentNavbar";
 
 export default function StudentDashboard() {
   const [showOrders, setShowOrders] = useState(false);
@@ -37,35 +37,7 @@ export default function StudentDashboard() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#faf6f3] relative">
-      {/* Navbar */}
-      <header className="bg-white shadow-sm flex items-center justify-between px-6 py-3 fixed w-full top-0 z-20">
-        <div className="flex items-center gap-3">
-          <Image
-            src="/logo.webp"
-            alt="Rishihood University Logo"
-            width={160}
-            height={45}
-            priority
-            className="w-32 sm:w-40 object-contain"
-          />
-        </div>
-
-        <div className="hidden sm:flex items-center gap-6 text-[#333] font-medium">
-          <button className="hover:text-[#a30c34] transition">Incomplete</button>
-          <button className="hover:text-[#a30c34] transition">Dashboard</button>
-          <button className="hover:text-[#a30c34] transition">Completed</button>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-            Open
-          </div>
-          <div className="w-8 h-8 rounded-full bg-[#a30c34] flex items-center justify-center text-white font-semibold">
-            R
-          </div>
-        </div>
-      </header>
+      <StudentNavbar />
 
       {/* View Orders Button */}
       <button
@@ -76,7 +48,7 @@ export default function StudentDashboard() {
       </button>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center flex-1 px-5 py-32">
+      <main className="flex flex-col items-center justify-center flex-1 px-5 pt-24 pb-16">
         <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-lg flex flex-col items-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#222] mb-6 text-center">
             Add Clothes for Laundry
