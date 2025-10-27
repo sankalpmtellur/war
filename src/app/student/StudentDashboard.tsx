@@ -88,11 +88,10 @@ export default function StudentDashboard() {
                 key={i}
                 type="button"
                 onClick={() => handleNumberClick(i + 1)}
-                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg border text-lg font-semibold shadow-sm transition ${
-                  selectedCount === i + 1
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg border text-lg font-semibold shadow-sm transition ${selectedCount === i + 1
                     ? "bg-[#a30c34] text-white border-[#a30c34]"
                     : "bg-gray-100 hover:bg-[#f9dcdc] border-gray-300 text-gray-800"
-                }`}
+                  }`}
               >
                 {i + 1}
               </button>
@@ -119,35 +118,60 @@ export default function StudentDashboard() {
 
       {/* Orders Modal */}
       {showOrders && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-40 px-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-40 px-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative border border-gray-200">
             <button
               onClick={() => setShowOrders(false)}
-              className="absolute top-3 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold"
+              className="absolute top-3 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold transition"
             >
               &times;
             </button>
-            <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
+
+            <h3 className="text-2xl font-bold text-center mb-6 text-[#222]">
               Your Orders
             </h3>
 
             <div className="grid grid-cols-2 gap-4 text-center">
               {[
-                { label: "Total", color: "blue", count: 12 },
+                { label: "Total Orders", color: "blue", count: 12 },
                 { label: "Pending", color: "yellow", count: 2 },
                 { label: "In Progress", color: "orange", count: 3 },
                 { label: "Completed", color: "green", count: 7 },
               ].map((item) => (
                 <div
                   key={item.label}
-                  className={`p-4 rounded-lg bg-${item.color}-50 border border-${item.color}-200`}
+                  className={`p-5 rounded-xl border shadow-sm
+              ${item.color === "blue"
+                      ? "bg-blue-100 border-blue-300"
+                      : item.color === "yellow"
+                        ? "bg-yellow-100 border-yellow-300"
+                        : item.color === "orange"
+                          ? "bg-orange-100 border-orange-300"
+                          : "bg-green-100 border-green-300"
+                    }`}
                 >
                   <p
-                    className={`text-2xl font-bold text-${item.color}-600 mb-1`}
+                    className={`text-3xl font-extrabold mb-1 ${item.color === "blue"
+                        ? "text-blue-900"
+                        : item.color === "yellow"
+                          ? "text-yellow-900"
+                          : item.color === "orange"
+                            ? "text-orange-900"
+                            : "text-green-900"
+                      }`}
                   >
                     {item.count}
                   </p>
-                  <p className={`text-sm text-${item.color}-800`}>
+                  <p
+                    className={`text-sm font-medium ${item.color === "blue"
+                        ? "text-blue-800"
+                        : item.color === "yellow"
+                          ? "text-yellow-800"
+                          : item.color === "orange"
+                            ? "text-orange-800"
+                            : "text-green-800"
+                      }`}
+                  >
                     {item.label}
                   </p>
                 </div>
