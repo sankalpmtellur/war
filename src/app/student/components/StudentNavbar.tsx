@@ -69,8 +69,8 @@ export default function StudentNavbar() {
     }, [mobileOpen]);
 
     const navLinks = [
-        { href: "/student/dashboard", label: "Dashboard" },
         { href: "/student/incomplete", label: "Incomplete" },
+        { href: "/student/dashboard", label: "Dashboard" },
         { href: "/student/completed", label: "Completed" },
     ] as const;
 
