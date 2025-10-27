@@ -76,7 +76,7 @@ export default function StudentSignup1(_props: Props) {
           <div>
             <input
               type="email"
-              placeholder="Enter your RU email"
+              placeholder="Enter your Rishihood email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="px-4 py-3 border border-gray-400 rounded-md bg-white 
