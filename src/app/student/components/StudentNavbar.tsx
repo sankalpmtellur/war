@@ -22,7 +22,7 @@ function getServiceStatus() {
   const hour = now.getHours();
   const minute = now.getMinutes();
 
-  const isWeekday = day >= 1 && day <= 6;
+  const isWeekday = day >= 1 && day <= 6; // Mon–Sat
   const afterStart = hour > 8 || (hour === 8 && minute >= 30);
   const beforeEnd = hour < 18;
   const isOpen = isWeekday && afterStart && beforeEnd;
@@ -42,6 +42,7 @@ export default function StudentNavbar() {
   const [rating, setRating] = useState(0);
   const [hasRated, setHasRated] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   const status = getServiceStatus();
 
   // Close dropdown if clicked outside
@@ -55,9 +56,9 @@ export default function StudentNavbar() {
   }, []);
 
   const navLinks = [
-    { href: "/student/Incomplete", label: "Incomplete" },
+    { href: "/student/incomplete", label: "Incomplete" },
     { href: "/student/dashboard", label: "Dashboard" },
-    { href: "/student/Completed", label: "Completed" },
+    { href: "/student/completed", label: "Completed" },
   ];
 
   const handleRating = (val: number) => {
@@ -65,9 +66,15 @@ export default function StudentNavbar() {
     setHasRated(true);
   };
 
+  const handleLogout = () => {
+    setDropdownOpen(false);
+    setSidebarOpen(false);
+    router.push("/student/login");
+  };
+
   return (
     <>
-      {/* ===== NAVBAR ===== */}
+      {/* ===== DESKTOP NAVBAR ===== */}
       <nav className="fixed top-0 left-0 w-full bg-[#faf6f3] shadow-md px-4 sm:px-6 py-3 flex items-center justify-between font-medium z-50">
         {/* Left: Logo */}
         <Link href="/">
@@ -81,7 +88,7 @@ export default function StudentNavbar() {
           />
         </Link>
 
-        {/* Center: Links (Desktop) */}
+        {/* Center: Links (Desktop only) */}
         <div className="hidden lg:flex items-center space-x-6 text-gray-700 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <Link
@@ -92,23 +99,19 @@ export default function StudentNavbar() {
               {link.label}
             </Link>
           ))}
-          <button
-            onClick={() => window.open("https://forms.gle/tyKosaoDJZAGUqDA9", "_blank")}
-            className="hover:text-[#a30c34] transition-colors duration-200 px-3 py-2 rounded-md hover:bg-gray-100 text-sm font-medium"
-          >
-            Feedback
-          </button>
         </div>
 
         {/* Right: Status & Profile */}
-        <div className="flex items-center space-x-3 sm:space-x-4 relative flex-shrink-0">
-          {/* Service Status */}
+        <div className="flex items-center space-x-3 sm:space-x-4 relative">
+          {/* Service Hours */}
           <div className="hidden sm:flex items-center space-x-2 px-3 py-2 rounded-full bg-white border border-gray-200 shadow-sm relative group">
             <Clock className="w-4 h-4 text-gray-600" />
             <div className={`w-2 h-2 rounded-full ${status.dotColor}`} />
             <span className={`text-xs font-medium ${status.textColor}`}>
               {status.label}
             </span>
+
+            {/* Tooltip */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-4 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
               <p className="font-semibold mb-1">Laundry Hours</p>
               <p>Mon - Sat: 8:30 AM - 6:00 PM</p>
@@ -135,10 +138,12 @@ export default function StudentNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-xl rounded-xl z-50 overflow-hidden"
+                  className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 shadow-xl rounded-xl z-50 overflow-hidden"
                 >
-                  <div className="p-3 border-b border-gray-100">
-                    <p className="font-semibold text-gray-800 text-sm">Ritesh Kumar</p>
+                  <div className="p-4 border-b border-gray-100">
+                    <p className="font-semibold text-gray-800 text-sm">
+                      Ritesh Kumar
+                    </p>
                     <p className="text-xs text-gray-500">Student</p>
                     <p className="text-xs text-gray-400 mt-1">2401010384</p>
                   </div>
@@ -165,7 +170,7 @@ export default function StudentNavbar() {
                   <div className="border-t border-gray-100 my-1" />
 
                   <button
-                    onClick={() => router.push("/student/login")}
+                    onClick={handleLogout}
                     className="flex items-center space-x-3 px-4 py-3 hover:bg-red-50 text-sm text-red-600 w-full"
                   >
                     <LogOut className="w-4 h-4" />
@@ -186,7 +191,7 @@ export default function StudentNavbar() {
         </div>
       </nav>
 
-      {/* ===== SIDEBAR (Mobile) ===== */}
+      {/* ===== MOBILE SIDEBAR ===== */}
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
@@ -195,20 +200,22 @@ export default function StudentNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            {/* Overlay */}
             <div
               className="absolute inset-0 bg-black bg-opacity-50"
               onClick={() => setSidebarOpen(false)}
             />
 
+            {/* Sidebar */}
             <motion.aside
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 280, damping: 25 }}
-              className="absolute top-0 right-0 w-80 h-full bg-white shadow-2xl flex flex-col p-6"
+              className="absolute top-0 right-0 w-80 h-full bg-white shadow-2xl flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div>
                   <h3 className="font-semibold text-gray-800 text-lg">
                     Rishihood University
@@ -223,8 +230,8 @@ export default function StudentNavbar() {
                 </button>
               </div>
 
-              {/* User */}
-              <div className="flex items-center space-x-4 mb-4">
+              {/* User Info */}
+              <div className="flex items-center space-x-4 p-6 border-b border-gray-200">
                 <div className="w-14 h-14 bg-gradient-to-r from-[#a30c34] to-[#d63384] rounded-full flex items-center justify-center">
                   <User className="w-6 h-6 text-white" />
                 </div>
@@ -235,8 +242,8 @@ export default function StudentNavbar() {
                 </div>
               </div>
 
-              {/* Status */}
-              <div className="flex items-center gap-3 mb-4">
+              {/* Service Status */}
+              <div className="flex items-center gap-3 p-6 border-b border-gray-200">
                 <Clock className="w-5 h-5 text-gray-600" />
                 <div className={`w-3 h-3 rounded-full ${status.dotColor}`} />
                 <span className={`text-sm font-medium ${status.textColor}`}>
@@ -244,31 +251,37 @@ export default function StudentNavbar() {
                 </span>
               </div>
 
-              {/* Menu */}
-              <div className="flex flex-col gap-2 border-t border-gray-100 pt-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="px-4 py-3 rounded-md text-gray-700 hover:bg-gray-50 text-sm"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              {/* Navigation */}
+              <div className="flex flex-col py-4 border-b border-gray-200">
+                <Link
+                  href="/student/orders"
+                  className="px-6 py-4 hover:bg-gray-50 text-gray-700 text-sm"
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  View Orders
+                </Link>
+                <Link
+                  href="/student/profile"
+                  className="px-6 py-4 hover:bg-gray-50 text-gray-700 text-sm"
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  My Profile
+                </Link>
                 <button
                   onClick={() =>
                     window.open("https://forms.gle/tyKosaoDJZAGUqDA9", "_blank")
                   }
-                  className="text-left px-4 py-3 text-gray-700 hover:bg-gray-50 text-sm"
+                  className="px-6 py-4 text-left hover:bg-gray-50 text-gray-700 text-sm"
                 >
                   Feedback
                 </button>
               </div>
 
               {/* Rating */}
-              <div className="mt-auto border-t border-gray-100 pt-4">
-                <p className="text-base font-medium text-gray-700 mb-2">Rate Us</p>
+              <div className="p-6 border-b border-gray-200">
+                <p className="text-base font-medium text-gray-700 mb-2">
+                  Rate Us
+                </p>
                 <div className="flex space-x-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -292,16 +305,15 @@ export default function StudentNavbar() {
               </div>
 
               {/* Sign Out */}
-              <button
-                onClick={() => {
-                  setSidebarOpen(false);
-                  router.push("/student/login");
-                }}
-                className="mt-6 w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg flex items-center justify-center space-x-2 transition"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="font-medium">Sign Out</span>
-              </button>
+              <div className="p-6 mt-auto">
+                <button
+                  onClick={handleLogout}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg flex items-center justify-center space-x-2 transition"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="font-medium">Sign Out</span>
+                </button>
+              </div>
             </motion.aside>
           </motion.div>
         )}
