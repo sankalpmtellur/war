@@ -112,7 +112,7 @@ export default function StudentLogin(_props: Props) {
         </form>
 
         <p className="mt-6 text-gray-700 text-base">
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <Link
             href="/student/signup1"
             className="text-[#c45c29] font-medium hover:underline"

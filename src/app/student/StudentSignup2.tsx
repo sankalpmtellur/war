@@ -26,13 +26,15 @@ export default function StudentSignup2() {
     residency_no: "",
     password: "",
   });
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const isValidBagNo = (bagNo: string) => /^[BG]-\d+$/.test(bagNo.toUpperCase());
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     if (name === "bag_no") {
       const formatted = value.toUpperCase();
       if (formatted === "" || /^[BG](-\d*)?$/.test(formatted)) {
@@ -66,7 +68,6 @@ export default function StudentSignup2() {
     setError("");
     setLoading(true);
 
-    // Frontend-only placeholder; on success navigate to login
     setTimeout(() => {
       setLoading(false);
       router.push("/student/login");
@@ -83,83 +84,119 @@ export default function StudentSignup2() {
           width={160}
           height={45}
           priority
-          className="w-28 sm:w-32 md:w-36 object-contain drop-shadow-lg h-auto"
+          className="h-auto w-28 sm:w-32 md:w-36 object-contain drop-shadow-md"
         />
       </header>
 
-      {/* Main */}
+      {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">Complete Your Profile</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
+          Complete Your Profile
+        </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full max-w-sm">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5 w-full max-w-sm"
+        >
+          {/* Name */}
           <input
             type="text"
             name="name"
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
+          {/* Password */}
           <input
             type="password"
             name="password"
             placeholder="Create Password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
+          {/* Enrollment Number */}
           <input
             type="text"
             name="enrollment_no"
             placeholder="Enrollment Number"
             value={formData.enrollment_no}
             onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
+          {/* Bag Number */}
           <input
             type="text"
             name="bag_no"
             placeholder="Bag Number (e.g., B-558)"
             value={formData.bag_no}
             onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
+          {/* Phone Number */}
           <input
             type="tel"
             name="phone_no"
             placeholder="Phone Number"
             value={formData.phone_no}
             onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
+          {/* Residency Number */}
           <input
             type="text"
             name="residency_no"
             placeholder="Residency Number"
             value={formData.residency_no}
             onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg"
+            className="px-4 py-3 border border-gray-400 rounded-md bg-white
+                       text-gray-900 placeholder:text-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
+            required
           />
 
-          {/* Hidden email display (optional) */}
+          {/* Email (from step 1) */}
           {email && (
-            <p className="text-sm text-gray-600 -mt-2">Signing up with: <span className="font-medium">{email}</span></p>
+            <p className="text-sm text-gray-600 -mt-2">
+              Signing up with:{" "}
+              <span className="font-medium">{email}</span>
+            </p>
           )}
 
-          {/* Error */}
+          {/* Error Message */}
           {error && (
-            <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">{error}</div>
+            <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
+              {error}
+            </div>
           )}
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
+            className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
+                       text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
           >
             {loading ? (
               <>
@@ -171,6 +208,17 @@ export default function StudentSignup2() {
             )}
           </button>
         </form>
+
+        {/* Link to login */}
+        <p className="mt-6 text-gray-700 text-base">
+          Already have an account?{" "}
+          <a
+            href="/student/login"
+            className="text-[#c45c29] font-medium hover:underline"
+          >
+            Login
+          </a>
+        </p>
       </main>
     </div>
   );
