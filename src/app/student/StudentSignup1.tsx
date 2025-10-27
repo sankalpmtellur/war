@@ -10,15 +10,16 @@ type Props = {};
 
 export default function StudentSignup1(_props: Props) {
   const router = useRouter();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const isValidRishihoodEmail = (value: string) => value.endsWith("rishihood.edu.in");
+  const isValidRishihoodEmail = (value: string) =>
+    value.endsWith("rishihood.edu.in");
 
   const handleNext = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,12 +41,11 @@ export default function StudentSignup1(_props: Props) {
 
     setError("");
     setLoading(true);
-    // Frontend-only: move to step 2 with email in query
     setTimeout(() => {
       setLoading(false);
       const q = new URLSearchParams({ email }).toString();
       router.push(`/student/signup2?${q}`);
-    }, 400);
+    }, 600);
   };
 
   return (
@@ -58,83 +58,120 @@ export default function StudentSignup1(_props: Props) {
           width={160}
           height={45}
           priority
-          className="w-28 sm:w-32 md:w-36 h-auto object-contain drop-shadow-lg"
+          className="h-auto w-28 sm:w-32 md:w-36 object-contain drop-shadow-md"
         />
       </header>
 
       {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">Sign Up</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
+          Sign Up
+        </h1>
 
-        <form onSubmit={handleNext} className="flex flex-col gap-5 w-full max-w-sm">
+        <form
+          onSubmit={handleNext}
+          className="flex flex-col gap-5 w-full max-w-sm"
+        >
           {/* Email */}
           <div>
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your RU email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="px-4 py-3 border border-gray-300 rounded-md bg-[#fffdfc] focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg w-full"
+              className="px-4 py-3 border border-gray-400 rounded-md bg-white 
+                         text-gray-900 placeholder:text-gray-600
+                         focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg w-full transition"
               required
             />
-            <span className="text-sm text-gray-600 mt-1 block">Use your Rishihood University email</span>
+            <span className="text-sm text-gray-600 mt-1 block">
+              Use your official Rishihood email
+            </span>
           </div>
 
-          <div className="border border-gray-300 rounded-md bg-[#fffdfc] focus-within:ring-2 focus-within:ring-[#a30c34] flex items-center">
+          {/* Password */}
+          <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="New Password"
+              placeholder="Create a new password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="flex-1 px-4 py-3 bg-transparent focus:outline-none text-lg"
+              className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
+                         text-gray-900 placeholder:text-gray-600
+                         focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              className="px-3 text-gray-500 hover:text-gray-700"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
+              aria-label="Toggle password visibility"
             >
-              {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              {showPassword ? (
+                <AiOutlineEyeInvisible size={22} />
+              ) : (
+                <AiOutlineEye size={22} />
+              )}
             </button>
           </div>
 
-          <div className="border border-gray-300 rounded-md bg-[#fffdfc] focus-within:ring-2 focus-within:ring-[#a30c34] flex items-center">
+          {/* Confirm Password */}
+          <div className="relative">
             <input
               type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm Password"
+              placeholder="Confirm your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="flex-1 px-4 py-3 bg-transparent focus:outline-none text-lg"
+              className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
+                         text-gray-900 placeholder:text-gray-600
+                         focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
               required
             />
             <button
               type="button"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              aria-label={showConfirmPassword ? "Hide password" : "Show password"}
-              className="px-3 text-gray-500 hover:text-gray-700"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
+              aria-label="Toggle confirm password visibility"
             >
-              {showConfirmPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              {showConfirmPassword ? (
+                <AiOutlineEyeInvisible size={22} />
+              ) : (
+                <AiOutlineEye size={22} />
+              )}
             </button>
           </div>
 
+          {/* Error */}
+          {error && (
+            <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
+              {error}
+            </div>
+          )}
+
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 text-white font-medium py-3 rounded-lg transition text-lg"
+            className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
+                       text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
           >
-            {loading ? "Please wait..." : "Next"}
+            {loading ? (
+              <>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+                Please wait...
+              </>
+            ) : (
+              "Next"
+            )}
           </button>
         </form>
 
-        {/* Error Message */}
-        {error && (
-          <div className="mt-4 text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3 w-full max-w-sm">{error}</div>
-        )}
-
         <p className="mt-6 text-gray-700 text-base">
           Already have an account?{" "}
-          <Link href="/student/login" className="text-[#c45c29] font-medium hover:underline">
+          <Link
+            href="/student/login"
+            className="text-[#c45c29] font-medium hover:underline"
+          >
             Login
           </Link>
         </p>
@@ -142,4 +179,3 @@ export default function StudentSignup1(_props: Props) {
     </div>
   );
 }
-
