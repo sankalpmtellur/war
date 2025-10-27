@@ -121,13 +121,6 @@ export default function StudentNavbar() {
             <span className={`text-xs font-medium ${status.textColor}`}>
               {status.label}
             </span>
-
-            {/* Tooltip */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-4 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-              <p className="font-semibold mb-1">Laundry Hours</p>
-              <p>Mon - Sat: 8:30 AM - 10:00 AM & 4:30 PM - 7:00 PM</p>
-              <p className="text-gray-300 text-xs mt-1">Closed on Sundays</p>
-            </div>
           </div>
 
           {/* Profile Dropdown */}
