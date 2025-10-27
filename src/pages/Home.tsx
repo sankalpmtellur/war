@@ -21,7 +21,7 @@ export default function HomePage() {
       <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
         <section className="text-center w-full max-w-3xl">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-10 sm:mb-12">
-            Hey there! Who’s logging in?
+            Hey there! Who's logging in?
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
@@ -38,7 +38,7 @@ export default function HomePage() {
 
             {/* Washer Man Card */}
             <Link
-              href="#"
+              href="/washerman/login"
               className="group flex flex-col items-center justify-center w-60 h-40 rounded-2xl bg-gradient-to-b from-[#fff5ba] to-[#ffec80] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200"
             >
               <LuShirt className="text-[#804000] h-10 w-10 mb-3" />
