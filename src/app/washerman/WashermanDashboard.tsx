@@ -20,21 +20,21 @@ interface Order {
 const mockOrders: Order[] = [
   {
     id: "1",
-    bag_no: "BAG001",
+    bag_no: "001",
     number_of_clothes: 5,
     submission_date: "2025-10-15",
     status: "pending",
   },
   {
     id: "2",
-    bag_no: "BAG002",
+    bag_no: "002",
     number_of_clothes: 3,
     submission_date: "2025-10-16",
     status: "inprogress",
   },
   {
     id: "3",
-    bag_no: "BAG003",
+    bag_no: "003",
     number_of_clothes: 7,
     submission_date: "2025-10-17",
     status: "complete",

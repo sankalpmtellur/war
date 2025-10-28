@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Clock, X, User, LogOut, BarChart2, Menu } from "lucide-react";
-import { Globe } from "lucide-react";
+import { Clock, X, User, LogOut, BarChart2, Menu, Globe, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 export default function WashermanNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState('en'); // 'en' as default
   const [serviceStatus, setServiceStatus] = useState({
     status: "Open",
     isOpen: true,
@@ -95,17 +95,21 @@ export default function WashermanNavbar() {
 
             {/* Language Dropdown */}
             {isLangOpen && (
-              <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-gray-100 z-50 overflow-hidden">
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50 overflow-hidden">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => {
-                      // setLanguage(lang.code);
+                      setLanguage(lang.code);
                       setIsLangOpen(false);
                     }}
-                    className={`flex items-center gap-2 w-full px-4 py-2 text-sm transition-colors hover:bg-gray-50`}
+                    className={`flex items-center justify-between w-full px-4 py-3 text-sm text-gray-800 transition-colors hover:bg-gray-100`}
                   >
-                    🌐 {lang.label}
+                    <div className="flex items-center gap-3">
+                      <Globe className="w-4 h-4 text-gray-500" />
+                      <span className="font-medium">{lang.label}</span>
+                    </div>
+                    {language === lang.code && <Check className="w-4 h-4 text-blue-600" />}
                   </button>
                 ))}
               </div>
