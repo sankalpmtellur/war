@@ -1,6 +1,6 @@
 "use client";
 
-import StudentLookup from "../StudentLookup";
+import StudentLookup from "../WashermanLookup";
 import WashermanNavbar from "../components/WashermanNavbar";
 
 export default function StudentLookupPage() {
