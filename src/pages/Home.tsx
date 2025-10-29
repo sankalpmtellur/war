@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { LuGraduationCap, LuShirt } from "react-icons/lu";
+import { Card } from "@/components/ui/card";
 
 export default function HomePage() {
   return (
@@ -26,25 +28,23 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
             {/* Student Card */}
-            <Link
-              href="/student/login"
-              className="group flex flex-col items-center justify-center w-60 h-40 rounded-2xl bg-gradient-to-b from-[#d9e9ff] to-[#bcd8ff] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200"
-            >
-              <LuGraduationCap className="text-[#003a8c] h-10 w-10 mb-3" />
-              <span className="text-[#003a8c] text-base sm:text-lg font-semibold">
-                Student
-              </span>
+            <Link href="/student/login">
+              <Card className="group flex flex-col items-center justify-center w-60 h-40 bg-gradient-to-b from-[#d9e9ff] to-[#bcd8ff] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200">
+                <LuGraduationCap className="text-[#003a8c] h-10 w-10 mb-3" />
+                <span className="text-[#003a8c] text-base sm:text-lg font-semibold">
+                  Student
+                </span>
+              </Card>
             </Link>
 
             {/* Washer Man Card */}
-            <Link
-              href="/washerman/login"
-              className="group flex flex-col items-center justify-center w-60 h-40 rounded-2xl bg-gradient-to-b from-[#fff5ba] to-[#ffec80] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200"
-            >
-              <LuShirt className="text-[#804000] h-10 w-10 mb-3" />
-              <span className="text-[#804000] text-base sm:text-lg font-semibold">
-                Washer Man
-              </span>
+            <Link href="/washerman/login">
+              <Card className="group flex flex-col items-center justify-center w-60 h-40 bg-gradient-to-b from-[#fff5ba] to-[#ffec80] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-200">
+                <LuShirt className="text-[#804000] h-10 w-10 mb-3" />
+                <span className="text-[#804000] text-base sm:text-lg font-semibold">
+                  Washer Man
+                </span>
+              </Card>
             </Link>
           </div>
         </section>

@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function Launchpage() {
   const router = useRouter();
@@ -20,7 +22,7 @@ export default function Launchpage() {
       </div>
 
       {/* Center Card */}
-      <div className="bg-white shadow-lg rounded-2xl px-10 py-8 sm:px-14 sm:py-10 text-center max-w-md w-[90%] ring-1 ring-gray-100 backdrop-blur">
+      <Card className="px-10 py-8 sm:px-14 sm:py-10 text-center max-w-md w-[90%] bg-white shadow-lg rounded-2xl ring-1 ring-gray-100 backdrop-blur">
         <h1 className="text-[#990A2C] text-4xl sm:text-5xl font-extrabold mb-3">
           Welcome!
         </h1>
@@ -29,15 +31,14 @@ export default function Launchpage() {
         </p>
 
         <div className="mt-7 flex justify-center">
-          <button
+          <Button
             onClick={() => router.push("/Home")}
-            type="button"
-            className="bg-[#990A2C] hover:bg-[#7e0824] text-white font-semibold text-sm sm:text-base px-8 py-3 rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#990A2C]/50"
+            className="bg-[#990A2C] hover:bg-[#7e0824] text-white font-semibold text-sm sm:text-base px-8 py-3 shadow-md transition-all duration-200"
           >
             Continue
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     </main>
   );
 }
