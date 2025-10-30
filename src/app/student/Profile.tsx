@@ -204,7 +204,7 @@ export default function Profile() {
                   <div className="flex items-start space-x-3">
                     <Mail className="w-5 h-5 text-gray-500 mt-1" />
                     <div className="flex-1">
-                      <Label>Email</Label>
+                      <Label className="text-gray-800 font-medium"><b>Email</b></Label>
                       {isEditing ? (
                         <Input
                           type="email"
@@ -226,7 +226,7 @@ export default function Profile() {
                   <div className="flex items-start space-x-3">
                     <Phone className="w-5 h-5 text-gray-500 mt-1" />
                     <div className="flex-1">
-                      <Label>Phone</Label>
+                      <Label className="text-gray-800 font-medium"><b>Phone</b></Label>
                       {isEditing ? (
                         <Input
                           type="tel"
@@ -256,7 +256,7 @@ export default function Profile() {
                   <div className="flex items-start space-x-3">
                     <BookOpen className="w-5 h-5 text-gray-500 mt-1" />
                     <div className="flex-1">
-                      <Label>Enrollment Number</Label>
+                      <Label className="text-gray-800 font-medium"><b>Enrollment Number</b></Label>
                       <p className="text-sm text-gray-800">
                         {profileData.enrollment_no}
                       </p>
@@ -266,7 +266,7 @@ export default function Profile() {
                   <div className="flex items-start space-x-3">
                     <Package className="w-5 h-5 text-gray-500 mt-1" />
                     <div className="flex-1">
-                      <Label>Bag Number</Label>
+                      <Label className="text-gray-800 font-medium"><b>Bag Number</b></Label>
                       <p className="text-sm text-gray-800">
                         {profileData.bag_no}
                       </p>
@@ -284,7 +284,7 @@ export default function Profile() {
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-gray-500 mt-1" />
                   <div className="flex-1">
-                    <Label>Residency</Label>
+                    <Label className="text-gray-800 font-medium"><b>Residency</b></Label>
                     {isEditing ? (
                       <Select
                         value={editData.residency_no}
