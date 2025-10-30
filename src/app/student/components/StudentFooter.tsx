@@ -1,11 +1,10 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AlertCircle, Plus, ListChecks } from "lucide-react";
-import { Card } from "@/components/ui/card"; // shadcn card component
-import { cn } from "@/lib/utils"; // for conditional classes if available
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
   to: string;

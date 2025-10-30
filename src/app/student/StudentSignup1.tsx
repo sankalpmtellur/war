@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 type Props = {};
 
 export default function StudentSignup1(_props: Props) {
@@ -52,7 +50,6 @@ export default function StudentSignup1(_props: Props) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#faf6f3]">
-      {/* Header */}
       <header className="p-3.5 relative z-10">
         <Image
           src="/logo.webp"
@@ -64,7 +61,6 @@ export default function StudentSignup1(_props: Props) {
         />
       </header>
 
-      {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
           Sign Up
@@ -74,7 +70,7 @@ export default function StudentSignup1(_props: Props) {
           onSubmit={handleNext}
           className="flex flex-col gap-5 w-full max-w-sm"
         >
-          {/* Email */}
+
           <div>
             <Input
               type="email"
@@ -91,7 +87,6 @@ export default function StudentSignup1(_props: Props) {
             </span>
           </div>
 
-          {/* Password */}
           <div className="relative">
             <Input
               type={showPassword ? "text" : "password"}
@@ -119,7 +114,6 @@ export default function StudentSignup1(_props: Props) {
             </Button>
           </div>
 
-          {/* Confirm Password */}
           <div className="relative">
             <Input
               type={showConfirmPassword ? "text" : "password"}
@@ -147,14 +141,12 @@ export default function StudentSignup1(_props: Props) {
             </Button>
           </div>
 
-          {/* Error */}
           {error && (
             <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
               {error}
             </div>
           )}
 
-          {/* Submit */}
           <Button
             type="submit"
             disabled={loading}

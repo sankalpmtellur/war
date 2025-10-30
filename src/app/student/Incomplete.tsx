@@ -1,10 +1,7 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import StudentNavbar from "@/app/student/components/StudentNavbar";
 import StudentFooter from "@/app/student/components/StudentFooter";
-
-// ✅ Shadcn components
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -45,7 +42,6 @@ const getStatusText = (status: string): string => {
   }
 };
 
-// Mock data for demonstration
 const mockOrders = [
   {
     id: "1001",
@@ -67,7 +63,6 @@ export default function Incomplete() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Simulate API call with timeout
     const timer = setTimeout(() => {
       setIncompleteOrders(mockOrders.filter((order) => order.status !== "complete"));
       setLoading(false);

@@ -1,12 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 type Props = {};
 
 export default function StudentLogin(_props: Props) {
@@ -31,7 +29,7 @@ export default function StudentLogin(_props: Props) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#faf6f3]">
-      {/* Header */}
+
       <header className="p-3.5 relative z-10">
         <Image
           src="/logo.webp"
@@ -43,14 +41,12 @@ export default function StudentLogin(_props: Props) {
         />
       </header>
 
-      {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
           Login
         </h1>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full max-w-sm">
-          {/* Email Input */}
           <Input
             type="email"
             placeholder="Enter your email"
@@ -62,7 +58,6 @@ export default function StudentLogin(_props: Props) {
             required
           />
 
-          {/* Password Input with Toggle */}
           <div className="relative">
             <Input
               type={showPassword ? "text" : "password"}
@@ -90,14 +85,12 @@ export default function StudentLogin(_props: Props) {
             </Button>
           </div>
 
-          {/* Error Message */}
           {error && (
             <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
               {error}
             </div>
           )}
 
-          {/* Submit Button */}
           <Button
             type="submit"
             disabled={loading}

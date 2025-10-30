@@ -90,7 +90,6 @@ export default function Profile() {
       <StudentNavbar />
 
       <main className="flex flex-col flex-1 px-4 sm:px-6 py-24 sm:py-28 w-full max-w-4xl mx-auto">
-        {/* Back Button */}
         <div className="w-full mb-4">
           <Link
             href="/student/dashboard"
@@ -101,7 +100,6 @@ export default function Profile() {
           </Link>
         </div>
 
-        {/* Success & Error Messages */}
         {success && (
           <Alert className="mb-4 bg-green-50 border border-green-200">
             <AlertDescription className="text-green-800 text-center font-medium">
@@ -119,7 +117,6 @@ export default function Profile() {
 
         <Card className="w-full bg-white rounded-xl shadow-md border-none">
           <CardContent className="p-6 sm:p-8 lg:p-10">
-            {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#333]">
                 My Profile
@@ -162,7 +159,6 @@ export default function Profile() {
               )}
             </div>
 
-            {/* Avatar & Basic Info */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-8">
               <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-[#a30c34] flex items-center justify-center bg-gradient-to-r from-[#a30c34] to-[#d63384]">
                 <User className="w-12 h-12 lg:w-16 lg:h-16 text-white" />
@@ -191,9 +187,7 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* Details Sections */}
             <div className="space-y-6">
-              {/* Personal Information */}
               <div className="space-y-4">
                 <h3 className="text-base sm:text-lg font-semibold text-[#333] border-b border-gray-200 pb-2">
                   Personal Information
@@ -222,7 +216,6 @@ export default function Profile() {
                     </div>
                   </div>
 
-                  {/* Phone */}
                   <div className="flex items-start space-x-3">
                     <Phone className="w-5 h-5 text-gray-500 mt-1" />
                     <div className="flex-1">
@@ -246,7 +239,6 @@ export default function Profile() {
                 </div>
               </div>
 
-              {/* Academic Info */}
               <div className="space-y-4">
                 <h3 className="text-base sm:text-lg font-semibold text-[#333] border-b border-gray-200 pb-2">
                   Academic Information
@@ -275,7 +267,6 @@ export default function Profile() {
                 </div>
               </div>
 
-              {/* Residency Info */}
               <div className="space-y-4">
                 <h3 className="text-base sm:text-lg font-semibold text-[#333] border-b border-gray-200 pb-2">
                   Residency Information

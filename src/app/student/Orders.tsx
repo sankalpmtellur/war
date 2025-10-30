@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import StudentNavbar from "./components/StudentNavbar";
@@ -15,7 +14,6 @@ interface DashboardData {
   complete_orders: number;
 }
 
-// Mock data for demonstration
 const mockDashboardData: DashboardData = {
   total_orders: 24,
   pending_orders: 5,
@@ -50,7 +48,6 @@ export default function Orders() {
       <StudentNavbar />
 
       <main className="flex flex-col items-center flex-1 px-4 sm:px-6 py-28 sm:py-32 w-full max-w-2xl mx-auto">
-        {/* Back button for small screens */}
         <Button
           onClick={() => router.back()}
           variant="secondary"

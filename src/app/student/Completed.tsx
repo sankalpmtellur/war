@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import StudentNavbar from "@/app/student/components/StudentNavbar";
 import StudentFooter from "@/app/student/components/StudentFooter";
@@ -18,7 +17,6 @@ interface Order {
   count?: number;
 }
 
-// Mock data for demonstration
 const mockOrders: Order[] = [
   {
     id: "2001",

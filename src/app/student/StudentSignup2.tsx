@@ -1,11 +1,9 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
 type FormData = {
   name: string;
   enrollment_no: string;
@@ -75,7 +73,7 @@ export default function StudentSignup2() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#faf6f3]">
-      {/* Header */}
+
       <header className="p-3.5 relative z-10">
         <Image
           src="/logo.webp"
@@ -87,7 +85,6 @@ export default function StudentSignup2() {
         />
       </header>
 
-      {/* Main Section */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-4">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#333] mb-8">
           Complete Your Profile
@@ -97,7 +94,6 @@ export default function StudentSignup2() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-5 w-full max-w-sm"
         >
-          {/* Name */}
           <Input
             type="text"
             name="name"
@@ -110,7 +106,6 @@ export default function StudentSignup2() {
             required
           />
 
-          {/* Enrollment Number */}
           <Input
             type="text"
             name="enrollment_no"
@@ -123,7 +118,6 @@ export default function StudentSignup2() {
             required
           />
 
-          {/* Bag Number */}
           <Input
             type="text"
             name="bag_no"
@@ -148,8 +142,6 @@ export default function StudentSignup2() {
                        focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
             required
           />
-
-          {/* Residency Number */}
           <Input
             type="text"
             name="residency_no"
@@ -162,7 +154,6 @@ export default function StudentSignup2() {
             required
           />
 
-          {/* Email (from step 1) */}
           {email && (
             <p className="text-sm text-gray-600 -mt-2">
               Signing up with:{" "}
@@ -170,14 +161,12 @@ export default function StudentSignup2() {
             </p>
           )}
 
-          {/* Error Message */}
           {error && (
             <div className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
               {error}
             </div>
           )}
 
-          {/* Submit */}
           <Button
             type="submit"
             disabled={loading}
@@ -195,7 +184,6 @@ export default function StudentSignup2() {
           </Button>
         </form>
 
-        {/* Link to login */}
         <p className="mt-6 text-gray-700 text-base">
           Already have an account?{" "}
           <a
