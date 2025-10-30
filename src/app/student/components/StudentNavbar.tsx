@@ -1,22 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   Clock,
-  User,
   UserCheck,
   LogOut,
   FileText,
   Menu,
-  X,
   Star,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-// ✅ Shadcn imports
 import {
   Button,
 } from "@/components/ui/button";
@@ -36,7 +31,6 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
 
 function getServiceStatus() {
   const now = new Date();
@@ -45,17 +39,14 @@ function getServiceStatus() {
   const minute = now.getMinutes();
 
   const isWeekday = day >= 1 && day <= 6;
-
   const morningStart = hour > 8 || (hour === 8 && minute >= 30);
   const beforeMorningEnd = hour < 10;
-
   const eveningStart = hour > 16 || (hour === 16 && minute >= 30);
   const beforeEveningEnd = hour < 19;
 
   const isOpen =
     isWeekday &&
-    ((morningStart && beforeMorningEnd) ||
-      (eveningStart && beforeEveningEnd));
+    ((morningStart && beforeMorningEnd) || (eveningStart && beforeEveningEnd));
 
   return {
     isOpen,
@@ -129,7 +120,7 @@ export default function StudentNavbar() {
             </span>
           </div>
 
-          {/* Profile Dropdown (Shadcn) */}
+          {/* Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -138,7 +129,9 @@ export default function StudentNavbar() {
               >
                 <Avatar className="w-8 h-8">
                   <AvatarImage src="/avatar.png" />
-                  <AvatarFallback>RK</AvatarFallback>
+                  <AvatarFallback className="bg-gray-200 text-gray-700 font-semibold">
+                    RK
+                  </AvatarFallback>
                 </Avatar>
                 <span className="text-gray-700 text-sm font-medium">
                   Ritesh
@@ -147,33 +140,41 @@ export default function StudentNavbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-56 bg-white border border-gray-200 shadow-xl rounded-xl"
+              className="w-56 bg-white border border-gray-200 shadow-xl rounded-xl py-2"
             >
               <DropdownMenuLabel className="text-sm font-semibold text-gray-800">
                 Ritesh Kumar
                 <p className="text-xs text-gray-500">Student</p>
                 <p className="text-xs text-gray-400 mt-1">2401010384</p>
               </DropdownMenuLabel>
+
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/student/profile" className="flex items-center space-x-2">
+
+              <DropdownMenuItem
+                asChild
+                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+              >
+                <Link href="/student/profile" className="flex items-center gap-2">
                   <UserCheck className="w-4 h-4" />
                   <span>My Profile</span>
                 </Link>
               </DropdownMenuItem>
+
               <DropdownMenuItem
                 onClick={() =>
                   window.open("https://forms.gle/tyKosaoDJZAGUqDA9", "_blank")
                 }
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
               >
                 <FileText className="w-4 h-4" />
                 <span>Feedback</span>
               </DropdownMenuItem>
+
               <DropdownMenuSeparator />
+
               <DropdownMenuItem
                 onClick={handleLogout}
-                className="flex items-center text-red-600 space-x-2"
+                className="flex items-center space-x-2 text-red-600 hover:text-red-700"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sign Out</span>
@@ -208,7 +209,9 @@ export default function StudentNavbar() {
           {/* User Info */}
           <div className="flex items-center space-x-4 p-6 border-b border-gray-200">
             <Avatar className="w-14 h-14">
-              <AvatarFallback>RK</AvatarFallback>
+              <AvatarFallback className="bg-gray-200 text-gray-700 font-semibold">
+                RK
+              </AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold text-gray-800">Ritesh Kumar</p>
@@ -261,9 +264,8 @@ export default function StudentNavbar() {
                 <button
                   key={star}
                   onClick={() => handleRating(star)}
-                  className={`p-1 ${
-                    star <= rating ? "text-yellow-400" : "text-gray-300"
-                  } hover:text-yellow-400`}
+                  className={`p-1 ${star <= rating ? "text-yellow-400" : "text-gray-300"
+                    } hover:text-yellow-400`}
                 >
                   <Star
                     className="w-6 h-6"
