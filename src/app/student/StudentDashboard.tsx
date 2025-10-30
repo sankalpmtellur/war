@@ -3,6 +3,14 @@
 import React, { useState } from "react";
 import StudentNavbar from "@/app/student/components/StudentNavbar";
 import StudentFooter from "@/app/student/components/StudentFooter";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function StudentDashboard() {
   const [showOrders, setShowOrders] = useState(false);
@@ -41,12 +49,12 @@ export default function StudentDashboard() {
       <StudentNavbar />
 
       {/* View Orders Button */}
-      <button
+      <Button
         onClick={() => setShowOrders(true)}
         className="hidden sm:block fixed right-8 top-28 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md font-medium text-sm z-30 transition"
       >
         View Orders
-      </button>
+      </Button>
 
       {/* Main Content */}
       <main className="flex flex-col items-center justify-center flex-1 px-5 pt-24 pb-16">
@@ -70,7 +78,7 @@ export default function StudentDashboard() {
           )}
 
           {/* Input */}
-          <input
+          <Input
             type="number"
             min="1"
             placeholder="Enter count"
@@ -79,31 +87,32 @@ export default function StudentDashboard() {
               setCustomCount(e.target.value);
               setSelectedCount(null);
             }}
-            className="w-64 sm:w-72 px-5 py-3 border border-gray-300 rounded-md text-center text-lg placeholder-gray-400 text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-[#a30c34] transition mb-6"
+            className="w-64 sm:w-72 px-5 py-3 border-gray-300 text-center text-lg placeholder-gray-400 text-gray-800 focus-visible:ring-[#a30c34] focus-visible:ring-2 transition mb-6"
           />
 
           {/* Number Buttons */}
           <div className="grid grid-cols-5 gap-4 mb-6">
             {[...Array(10)].map((_, i) => (
-              <button
+              <Button
                 key={i}
                 type="button"
+                variant={selectedCount === i + 1 ? "default" : "outline"}
                 onClick={() => handleNumberClick(i + 1)}
-                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg border text-lg font-semibold shadow-sm transition ${selectedCount === i + 1
-                    ? "bg-[#a30c34] text-white border-[#a30c34]"
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg text-lg font-semibold shadow-sm transition ${selectedCount === i + 1
+                    ? "bg-[#a30c34] text-white border-[#a30c34] hover:bg-[#8b092d]"
                     : "bg-gray-100 hover:bg-[#f9dcdc] border-gray-300 text-gray-800"
                   }`}
               >
                 {i + 1}
-              </button>
+              </Button>
             ))}
           </div>
 
           {/* Submit Button */}
-          <button
+          <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="bg-[#a30c34] hover:bg-[#8b092d] text-white text-lg font-medium px-8 py-3 rounded-lg shadow-md transition w-full sm:w-auto disabled:bg-gray-400 flex items-center justify-center"
+            className="bg-[#a30c34] hover:bg-[#8b092d] text-white text-lg font-medium px-8 py-3 rounded-lg shadow-md transition w-full sm:w-auto disabled:bg-gray-400"
           >
             {loading ? (
               <>
@@ -113,24 +122,20 @@ export default function StudentDashboard() {
             ) : (
               "Submit"
             )}
-          </button>
+          </Button>
         </div>
       </main>
 
       {/* Orders Modal */}
-      {showOrders && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-40 px-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative border border-gray-200">
-            <button
-              onClick={() => setShowOrders(false)}
-              className="absolute top-3 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold transition"
-            >
-              &times;
-            </button>
-
-            <h3 className="text-2xl font-bold text-center mb-6 text-[#222]">
+      <Dialog open={showOrders} onOpenChange={setShowOrders}>
+        <DialogContent 
+          className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-[calc(100%-2rem)] border border-gray-200 [&>button]:text-gray-600 [&>button]:hover:text-gray-900 [&>button]:transition-colors"
+        >
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center mb-6 text-[#222]">
               Your Orders
-            </h3>
+            </DialogTitle>
+          </DialogHeader>
 
             <div className="grid grid-cols-2 gap-4 text-center">
               {[
@@ -178,9 +183,8 @@ export default function StudentDashboard() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
       {/* Footer - Mobile Only */}
       <StudentFooter />
     </div>

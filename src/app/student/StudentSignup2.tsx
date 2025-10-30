@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type FormData = {
   name: string;
@@ -10,7 +12,6 @@ type FormData = {
   bag_no: string;
   phone_no: string;
   residency_no: string;
-  password: string;
 };
 
 export default function StudentSignup2() {
@@ -23,8 +24,7 @@ export default function StudentSignup2() {
     enrollment_no: "",
     bag_no: "",
     phone_no: "",
-    residency_no: "",
-    password: "",
+    residency_no: ""
   });
 
   const [error, setError] = useState("");
@@ -53,8 +53,7 @@ export default function StudentSignup2() {
       !formData.enrollment_no ||
       !formData.bag_no ||
       !formData.phone_no ||
-      !formData.residency_no ||
-      !formData.password
+      !formData.residency_no
     ) {
       setError("Please fill in all fields");
       return;
@@ -99,7 +98,7 @@ export default function StudentSignup2() {
           className="flex flex-col gap-5 w-full max-w-sm"
         >
           {/* Name */}
-          <input
+          <Input
             type="text"
             name="name"
             placeholder="Full Name"
@@ -111,21 +110,8 @@ export default function StudentSignup2() {
             required
           />
 
-          {/* Password */}
-          <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="px-4 py-3 border border-gray-400 rounded-md bg-white
-                       text-gray-900 placeholder:text-gray-600
-                       focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
-            required
-          />
-
           {/* Enrollment Number */}
-          <input
+          <Input
             type="text"
             name="enrollment_no"
             placeholder="Enrollment Number"
@@ -138,7 +124,7 @@ export default function StudentSignup2() {
           />
 
           {/* Bag Number */}
-          <input
+          <Input
             type="text"
             name="bag_no"
             placeholder="Bag Number (e.g., B-558)"
@@ -151,7 +137,7 @@ export default function StudentSignup2() {
           />
 
           {/* Phone Number */}
-          <input
+          <Input
             type="tel"
             name="phone_no"
             placeholder="Phone Number"
@@ -164,7 +150,7 @@ export default function StudentSignup2() {
           />
 
           {/* Residency Number */}
-          <input
+          <Input
             type="text"
             name="residency_no"
             placeholder="Residency Number"
@@ -192,7 +178,7 @@ export default function StudentSignup2() {
           )}
 
           {/* Submit */}
-          <button
+          <Button
             type="submit"
             disabled={loading}
             className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
@@ -206,7 +192,7 @@ export default function StudentSignup2() {
             ) : (
               "Submit"
             )}
-          </button>
+          </Button>
         </form>
 
         {/* Link to login */}

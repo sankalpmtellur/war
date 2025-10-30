@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 type Props = {};
 
@@ -74,7 +76,7 @@ export default function StudentSignup1(_props: Props) {
         >
           {/* Email */}
           <div>
-            <input
+            <Input
               type="email"
               placeholder="Enter your Rishihood email"
               value={email}
@@ -91,20 +93,22 @@ export default function StudentSignup1(_props: Props) {
 
           {/* Password */}
           <div className="relative">
-            <input
+            <Input
               type={showPassword ? "text" : "password"}
               placeholder="Create a new password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
-                         text-gray-900 placeholder:text-gray-600
+                         text-gray-900 placeholder:text-gray-600 pr-10
                          focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
               required
             />
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
+              className="absolute right-0 top-0 h-full px-3 py-2 text-gray-600 hover:text-[#a30c34] hover:bg-transparent"
               aria-label="Toggle password visibility"
             >
               {showPassword ? (
@@ -112,33 +116,35 @@ export default function StudentSignup1(_props: Props) {
               ) : (
                 <AiOutlineEye size={22} />
               )}
-            </button>
+            </Button>
           </div>
 
           {/* Confirm Password */}
           <div className="relative">
-            <input
+            <Input
               type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm your password"
+              placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
-                         text-gray-900 placeholder:text-gray-600
+                         text-gray-900 placeholder:text-gray-600 pr-10
                          focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
               required
             />
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
-              aria-label="Toggle confirm password visibility"
+              className="absolute right-0 top-0 h-full px-3 py-2 text-gray-600 hover:text-[#a30c34] hover:bg-transparent"
+              aria-label="Toggle password visibility"
             >
               {showConfirmPassword ? (
                 <AiOutlineEyeInvisible size={22} />
               ) : (
                 <AiOutlineEye size={22} />
               )}
-            </button>
+            </Button>
           </div>
 
           {/* Error */}
@@ -149,21 +155,21 @@ export default function StudentSignup1(_props: Props) {
           )}
 
           {/* Submit */}
-          <button
+          <Button
             type="submit"
             disabled={loading}
-            className="mt-2 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
-                       text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
+            className="mt-4 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
+                       text-white font-medium py-3 rounded-lg transition text-lg w-full"
           >
             {loading ? (
               <>
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
-                Please wait...
+                Creating account...
               </>
             ) : (
-              "Next"
+              "Continue"
             )}
-          </button>
+          </Button>
         </form>
 
         <p className="mt-6 text-gray-700 text-base">

@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // 👁️ eye icons
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 type Props = {};
 
@@ -49,7 +51,7 @@ export default function StudentLogin(_props: Props) {
 
         <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full max-w-sm">
           {/* Email Input */}
-          <input
+          <Input
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -62,20 +64,22 @@ export default function StudentLogin(_props: Props) {
 
           {/* Password Input with Toggle */}
           <div className="relative">
-            <input
+            <Input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="px-4 py-3 border border-gray-400 rounded-md bg-white w-full
-                         text-gray-900 placeholder:text-gray-600
+                         text-gray-900 placeholder:text-gray-600 pr-10
                          focus:outline-none focus:ring-2 focus:ring-[#a30c34] text-lg transition"
               required
             />
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-[#a30c34]"
+              className="absolute right-0 top-0 h-full px-3 py-2 text-gray-600 hover:text-[#a30c34] hover:bg-transparent"
               aria-label="Toggle password visibility"
             >
               {showPassword ? (
@@ -83,7 +87,7 @@ export default function StudentLogin(_props: Props) {
               ) : (
                 <AiOutlineEye size={22} />
               )}
-            </button>
+            </Button>
           </div>
 
           {/* Error Message */}
@@ -94,11 +98,11 @@ export default function StudentLogin(_props: Props) {
           )}
 
           {/* Submit Button */}
-          <button
+          <Button
             type="submit"
             disabled={loading}
             className="mt-4 bg-[#a30c34] hover:bg-[#8b092d] disabled:bg-gray-400 
-                       text-white font-medium py-3 rounded-lg transition text-lg flex items-center justify-center"
+                       text-white font-medium py-3 rounded-lg transition text-lg w-full"
           >
             {loading ? (
               <>
@@ -108,7 +112,7 @@ export default function StudentLogin(_props: Props) {
             ) : (
               "Continue"
             )}
-          </button>
+          </Button>
         </form>
 
         <p className="mt-6 text-gray-700 text-base">
