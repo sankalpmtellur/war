@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   User,
@@ -49,13 +48,11 @@ const mockStudentData: StudentData = {
 };
 
 export default function Profile() {
-  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState<StudentData>(mockStudentData);
   const [editData, setEditData] = useState<StudentData>({ ...mockStudentData });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleEdit = () => {
     setEditData({ ...profileData });
@@ -134,19 +131,9 @@ export default function Profile() {
                 <div className="flex space-x-2">
                   <Button
                     onClick={handleSave}
-                    disabled={loading}
                     className="bg-green-600 hover:bg-green-700 text-white"
                   >
-                    {loading ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Saving...
-                      </>
-                    ) : (
-                      <>
-                        <Save className="w-4 h-4 mr-2" /> Save
-                      </>
-                    )}
+                    <Save className="w-4 h-4 mr-2" /> Save
                   </Button>
                   <Button
                     onClick={handleCancel}

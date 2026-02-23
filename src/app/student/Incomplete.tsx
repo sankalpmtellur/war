@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import StudentNavbar from "@/app/student/components/StudentNavbar";
 import StudentFooter from "@/app/student/components/StudentFooter";
 import { Card, CardContent } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -60,7 +59,6 @@ const mockOrders = [
 export default function Incomplete() {
   const [incompleteOrders, setIncompleteOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -81,14 +79,6 @@ export default function Incomplete() {
 
         <Card className="bg-white rounded-2xl shadow-lg border-none w-full">
           <CardContent className="p-6 sm:p-8 w-full">
-            {error && (
-              <Alert variant="destructive" className="mb-6">
-                <AlertDescription className="text-center font-medium">
-                  {error}
-                </AlertDescription>
-              </Alert>
-            )}
-
             {loading ? (
               <div className="flex flex-col items-center py-12">
                 <Skeleton className="h-12 w-12 rounded-full mb-4" />

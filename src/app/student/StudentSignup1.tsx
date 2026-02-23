@@ -1,14 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-type Props = {};
 
-export default function StudentSignup1(_props: Props) {
+export default function StudentSignup1() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +20,7 @@ export default function StudentSignup1(_props: Props) {
   const isValidRishihoodEmail = (value: string) =>
     value.endsWith("rishihood.edu.in");
 
-  const handleNext = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleNext = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email || !password || !confirmPassword) {

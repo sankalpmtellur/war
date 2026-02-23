@@ -1,20 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-type Props = {};
 
-export default function StudentLogin(_props: Props) {
+export default function StudentLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -109,7 +108,7 @@ export default function StudentLogin(_props: Props) {
         </form>
 
         <p className="mt-6 text-gray-700 text-base">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/student/signup1"
             className="text-[#c45c29] font-medium hover:underline"

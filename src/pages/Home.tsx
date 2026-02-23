@@ -23,7 +23,7 @@ export default function HomePage() {
       <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
         <section className="text-center w-full max-w-3xl">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-10 sm:mb-12">
-            Hey there! Who's logging in?
+            Hey there! Who&apos;s logging in?
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
